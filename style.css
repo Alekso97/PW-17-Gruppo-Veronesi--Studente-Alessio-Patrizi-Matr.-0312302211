@@ -1,0 +1,688 @@
+/*
+ * ============================================================
+ *  GRUPPO VERONESI — Foglio di stile principale
+ *  File: style.css
+ *  Scopo: Esempio didattico universitario
+ * ============================================================
+ *
+ *  INDICE:
+ *  1.  Variabili CSS (Custom Properties)
+ *  2.  Reset & Base
+ *  3.  Top Bar
+ *  4.  Header & Navigazione
+ *  5.  Dropdown Menu
+ *  6.  Hero Section
+ *  7.  Bottoni
+ *  8.  Titoli di sezione
+ *  9.  Griglia Pillars (Cards)
+ *  10. Sezione Brand
+ *  11. Statistiche aziendali
+ *  12. Sezione Sostenibilità & Download
+ *  13. Footer
+ *  14. Banner didattico
+ *  15. Media Queries (Responsive)
+ * ============================================================
+ */
+
+
+/* ─────────────────────────────────────────────────────────
+   1. VARIABILI CSS — Custom Properties
+   Centralizzano i colori: cambia qui e si aggiorna tutto!
+   ───────────────────────────────────────────────────────── */
+:root {
+  --rosso:        #c0392b;   /* Rosso brand principale */
+  --rosso-scuro:  #96281b;   /* Rosso più scuro per hover */
+  --oro:          #c9a84c;   /* Oro per accenti e dettagli */
+  --grigio-chiaro:#f5f4f0;   /* Sfondo sezioni chiare */
+  --grigio-medio: #e0ddd6;   /* Bordi e divisori */
+  --testo:        #1a1a18;   /* Testo principale (quasi nero) */
+  --testo-light:  #6b6b65;   /* Testo secondario/didascalie */
+}
+
+
+/* ─────────────────────────────────────────────────────────
+   2. RESET & BASE
+   Rimuove margini e padding di default del browser.
+   box-sizing: border-box = padding NON aumenta la larghezza.
+   ───────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Source Sans 3', sans-serif;
+  color: var(--testo);
+  background: #fff;
+  /* scroll-behavior gestito via JS per più controllo */
+}
+
+
+
+
+
+/* ─────────────────────────────────────────────────────────
+   4. HEADER & NAVIGAZIONE
+   position: sticky = rimane visibile durante lo scroll.
+   z-index: 100 = sta sopra tutto il resto della pagina.
+   ───────────────────────────────────────────────────────── */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #fff;
+  border-bottom: 1px solid var(--grigio-medio);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4rem;
+  height: 72px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  /* Classe .scrolled aggiunta da JavaScript */
+  transition: box-shadow .3s;
+}
+header.scrolled {
+  box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+}
+
+.logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--rosso);
+  letter-spacing: -0.01em;
+  text-decoration: none;
+}
+.logo span { color: var(--testo); }
+
+nav { display: flex; gap: 0; }
+.nav-item { position: relative; }  /* necessario per posizionare il dropdown */
+
+.nav-item > a {
+  display: block;
+  padding: 0 1.2rem;
+  height: 72px;
+  line-height: 72px;  /* centra verticalmente il testo */
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--testo);
+  text-decoration: none;
+  transition: color .2s;
+}
+.nav-item > a:hover,
+.nav-item:hover > a { color: var(--rosso); }
+
+/* Linea rossa sotto la voce attiva — generata con ::after */
+.nav-item:hover > a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 1.2rem;
+  right: 1.2rem;
+  height: 3px;
+  background: var(--rosso);
+}
+
+/* Voce "Sostenibilità" evidenziata */
+.nav-highlight > a { color: var(--rosso) !important; }
+
+
+/* ─────────────────────────────────────────────────────────
+   5. DROPDOWN MENU
+   Nascosto di default, appare al :hover del .nav-item.
+   JavaScript aggiunge anche supporto per click/touch.
+   ───────────────────────────────────────────────────────── */
+.dropdown {
+  display: none;            /* nascosto di default */
+  position: absolute;       /* si posiziona rispetto al .nav-item */
+  top: 72px;
+  left: 0;
+  min-width: 200px;
+  background: #fff;
+  border: 1px solid var(--grigio-medio);
+  border-top: 3px solid var(--rosso);  /* accento rosso in cima */
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  /* Animazione aggiunta via JS con classe .open */
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity .2s, transform .2s;
+}
+.nav-item:hover .dropdown,
+.nav-item.open .dropdown {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+.dropdown a {
+  display: block;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.85rem;
+  color: var(--testo);
+  text-decoration: none;
+  border-bottom: 1px solid var(--grigio-chiaro);
+  transition: background .15s, color .15s;
+}
+.dropdown a:last-child { border-bottom: none; }
+.dropdown a:hover {
+  background: var(--grigio-chiaro);
+  color: var(--rosso);
+}
+
+
+/* ─────────────────────────────────────────────────────────
+   6. HERO SECTION
+   Sezione principale con sfondo gradiente.
+   clamp() = dimensione fluida tra min e max.
+   ───────────────────────────────────────────────────────── */
+.hero {
+  position: relative;
+  height: 580px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;  /* shorthand per top/right/bottom/left: 0 */
+  background: linear-gradient(135deg,
+    #1a0a08 0%,
+    #3d1510 40%,
+    #7a2920 70%,
+    #c0392b 100%
+  );
+}
+.hero-pattern {
+  position: absolute;
+  inset: 0;
+  /* Doppio radial-gradient per texture luminosa */
+  background-image:
+    radial-gradient(circle at 20% 50%, rgba(201,168,76,0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255,255,255,0.05) 0%, transparent 40%);
+}
+.hero-content {
+  position: relative;
+  z-index: 2;  /* sopra gli sfondi */
+  padding: 0 4rem;
+  max-width: 700px;
+  /* Animazione di entrata gestita da JavaScript */
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity .8s, transform .8s;
+}
+.hero-content.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.hero-eyebrow {
+  font-size: 0.78rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--oro);
+  margin-bottom: 1.2rem;
+}
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 3.2rem);  /* fluido tra 2rem e 3.2rem */
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.15;
+  margin-bottom: 1.5rem;
+}
+.hero p {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.7;
+  margin-bottom: 2rem;
+  max-width: 520px;
+}
+
+
+/* ─────────────────────────────────────────────────────────
+   7. BOTTONI
+   ───────────────────────────────────────────────────────── */
+.btn-primary {
+  display: inline-block;
+  background: var(--oro);
+  color: #fff;
+  padding: 0.9rem 2.2rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background .2s, transform .15s;
+}
+.btn-primary:hover {
+  background: #a8893a;
+  transform: translateY(-2px);  /* leggero "sollevamento" */
+}
+
+.btn-download {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(26,26,24,1.00)(--black);
+  color: #fff;
+  padding: 0.65rem 1.3rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: background .2s, transform .15s;
+  white-space: nowrap;
+}
+
+
+/* ─────────────────────────────────────────────────────────
+   8. TITOLI DI SEZIONE
+   ───────────────────────────────────────────────────────── */
+.section-title {
+  text-align: center;
+  padding: 4rem 4rem 2.5rem;
+}
+.section-title h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--testo);
+  margin-bottom: 0.8rem;
+}
+.section-title p {
+  color: var(--testo-light);
+  font-size: 1rem;
+  max-width: 560px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+.title-line {
+  width: 48px;
+  height: 3px;
+  background: var(--rosso);
+  margin: 1rem auto 0;
+}
+
+
+/* ─────────────────────────────────────────────────────────
+   9. GRIGLIA PILLARS (Cards)
+   CSS Grid con 3 colonne uguali.
+   Le card hanno bordi che formano una griglia visiva.
+   ───────────────────────────────────────────────────────── */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);  /* 3 colonne uguali */
+  gap: 0;
+  background: var(--grigio-chiaro);
+}
+.card {
+  background: #fff;
+  padding: 3rem 2.5rem;
+  border-right: 1px solid var(--grigio-medio);
+  border-bottom: 1px solid var(--grigio-medio);
+  transition: box-shadow .2s;
+  /* Animazione scroll — classe aggiunta da IntersectionObserver */
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity .5s, transform .5s, box-shadow .2s;
+}
+.card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* box-shadow interna crea un bordo inferiore colorato al hover */
+.card:hover { box-shadow: inset 0 -4px 0 var(--rosso); }
+
+.card-icon {
+  width: 52px;
+  height: 52px;
+  background: var(--grigio-chiaro);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+}
+.card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: var(--testo);
+}
+.card p {
+  font-size: 0.92rem;
+  color: var(--testo-light);
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+.card-link {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--rosso);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: border-color .2s;
+}
+.card-link:hover { border-color: var(--rosso); }
+
+
+/* ─────────────────────────────────────────────────────────
+   10. SEZIONE BRAND
+   ───────────────────────────────────────────────────────── */
+.brands {
+  padding: 4rem;
+  background: var(--grigio-chiaro);
+  text-align: center;
+}
+.brands h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+.brands-sub {
+  color: var(--testo-light);
+  margin-bottom: 3rem;
+  font-size: 0.95rem;
+}
+.brands-logos {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+}
+.brand-item {
+  padding: 2.5rem 4rem;
+  background: #fff;
+  border: 1px solid var(--grigio-medio);
+  transition: box-shadow .2s, transform .2s;
+}
+.brand-item:hover {
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  transform: translateY(-4px);
+}
+.brand-item span {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: var(--rosso);
+}
+
+
+/* ─────────────────────────────────────────────────────────
+   11. STATISTICHE AZIENDALI
+   ───────────────────────────────────────────────────────── */
+.stats {
+  padding: 5rem 4rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+}
+.stat {
+  text-align: center;
+  padding: 2rem;
+  border-right: 1px solid var(--grigio-medio);
+}
+.stat:last-child { border-right: none; }
+.stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  font-weight: 900;
+  color: var(--rosso);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+  /* Animazione counter gestita da JavaScript */
+}
+.stat-label {
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--testo-light);
+}
+
+
+/* ─────────────────────────────────────────────────────────
+   12. SEZIONE SOSTENIBILITÀ & DOWNLOAD
+   ───────────────────────────────────────────────────────── */
+.sustainability {
+  background: var(--testo);  /* sfondo scuro per contrasto */
+  padding: 5rem 4rem;
+  color: #fff;
+}
+.sus-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+.sus-left h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+.sus-left p {
+  color: rgba(255,255,255,0.65);
+  line-height: 1.8;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+.sus-left .accent { color: var(--oro); }
+
+/* Badge SDG / Framework */
+.goals {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 2rem;
+}
+.goal-badge {
+  padding: 0.4rem 0.9rem;
+  border: 1px solid rgba(201,168,76,0.4);
+  color: var(--oro);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  transition: background .2s;
+}
+.goal-badge:hover { background: rgba(201,168,76,0.15); }
+
+/* Lista report scaricabili */
+.reports-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.report-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 1.5rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  transition: background .2s, border-color .2s;
+  cursor: pointer;
+}
+.report-card:hover {
+  background: rgba(201,168,76,0.1);
+  border-color: rgba(201,168,76,0.4);
+}
+.report-info { flex: 1; }
+.report-year {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--oro);
+  margin-bottom: 0.3rem;
+}
+.report-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.25rem;
+}
+.report-desc {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.5);
+}
+.report-size {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.4);
+  margin-right: 1rem;
+  white-space: nowrap;
+}
+
+/* Nota GitHub sotto i report */
+.github-note {
+  margin-top: 1.5rem;
+  padding: 1rem 1.5rem;
+  border-left: 3px solid var(--oro);
+  background: rgba(201,168,76,0.08);
+  font-size: 0.83rem;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.6;
+}
+.github-note a {
+  color: var(--oro);
+  text-decoration: none;
+}
+.github-note a:hover { text-decoration: underline; }
+.github-note strong { color: rgba(255,255,255,0.8); }
+
+/* Toast notification — mostrato da JavaScript dopo il download */
+.toast {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: #1a1a18;
+  color: #fff;
+  padding: 1rem 1.5rem;
+  border-left: 4px solid var(--oro);
+  font-size: 0.88rem;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  z-index: 9999;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity .3s, transform .3s;
+  pointer-events: none;
+}
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* ─────────────────────────────────────────────────────────
+   13. FOOTER
+   ───────────────────────────────────────────────────────── */
+footer {
+  background: #0f0f0d;
+  color: rgba(255,255,255,0.55);
+  padding: 3rem 4rem 2rem;
+}
+.footer-inner {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 3rem;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  margin-bottom: 1.5rem;
+}
+.footer-brand .logo {
+  color: var(--oro);
+  font-size: 1.4rem;
+}
+.footer-brand p {
+  margin-top: 1rem;
+  font-size: 0.82rem;
+  line-height: 1.7;
+}
+.footer-col h4 {
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  margin-bottom: 1rem;
+}
+.footer-col a {
+  display: block;
+  color: rgba(255,255,255,0.55);
+  text-decoration: none;
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
+  transition: color .2s;
+}
+.footer-col a:hover { color: var(--oro); }
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.3);
+}
+
+
+/* ─────────────────────────────────────────────────────────
+   14. BANNER DIDATTICO
+   Avviso visibile che si tratta di un sito dimostrativo.
+   ───────────────────────────────────────────────────────── */
+.didactic-banner {
+  background: #fef9ee;
+  border: 2px dashed var(--oro);
+  padding: 1.2rem 4rem;
+  text-align: center;
+  font-size: 0.82rem;
+  color: #7a6020;
+  font-weight: 600;
+}
+.didactic-banner span { color: var(--rosso); }
+
+
+/* ─────────────────────────────────────────────────────────
+   15. MEDIA QUERIES — Responsive Design
+   @media applica stili solo sotto una certa larghezza.
+   max-width: 900px = tablet e mobile.
+   ───────────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  /* Riduci padding laterali */
+  header,
+  .topbar,
+  .section-title,
+  .sustainability,
+  .brands,
+  .stats,
+  footer {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .hero-content { padding: 0 1.5rem; }
+
+  /* Nasconde la nav desktop — su mobile si userebbe un menu hamburger */
+  nav { display: none; }
+
+  /* Colonne singole su mobile */
+  .cards-grid,
+  .sus-inner,
+  .footer-inner { grid-template-columns: 1fr; }
+
+  /* Stats: 2 colonne invece di 4 */
+  .stats { grid-template-columns: 1fr 1fr; }
+
+  /* Brand item più compatti */
+  .brand-item { padding: 1.5rem 2rem; }
+
+  /* Toast in basso al centro su mobile */
+  .toast {
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+  }
+}
