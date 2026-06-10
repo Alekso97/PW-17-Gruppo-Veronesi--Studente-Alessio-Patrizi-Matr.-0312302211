@@ -1,286 +1,449 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <!--
-    ============================================================
-     GRUPPO VERONESI — Pagina principale
-     File: index.html  |  Collegato a: style.css + script.js
-     Scopo: Esempio didattico universitario
-    ============================================================
-    STRUTTURA DEL PROGETTO:
-    ├── index.html       ← struttura e contenuto (HTML)
-    ├── style.css        ← aspetto grafico (CSS)
-    ├── script.js        ← interattività (JavaScript)
-    └── reports/         ← PDF da GitHub
-    ============================================================
-  -->
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gruppo Veronesi – Esempio Didattico</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
-  <!-- Foglio di stile ESTERNO — sempre nella <head> -->
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gruppo Veronesi – Esempio Didattico</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600&display=swap"
+        rel="stylesheet"
+    />
+
+    <!-- Foglio di stile esterno -->
+    <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
-
-  <!-- BANNER DIDATTICO -->
-  <div class="didactic-banner">
-    <p> ⚠️ <span>Sito dimostrativo a scopo didattico</span> — Replica semplificata di Gruppo Veronesi per uso universitario a cura dello Studente Alessio Patrizi Matr.&nbsp;0312302211. </p>
-    <p>Universita telematica Pegaso&nbsp;</p>
-  </div>
-
-
-
-  <!-- HEADER: position sticky, z-index 100, JS aggiunge .scrolled -->
-  <header>
-    <a href="index.html" class="logo">Gruppo <span>Veronesi</span></a>
-    <nav>
-      <div class="nav-item">
-        <a href="#">Gruppo</a>
-        <div class="dropdown">
-          <a href="#">Profilo aziendale</a>
-          <a href="#">Storia</a>
-          <a href="#">Valori</a>
-          <a href="#">Aree di attività</a>
-          <a href="https://www.gruppoveronesi.it/wp-content/uploads/2024/07/GruppoVeronesi_AR_2023_ITA-1.pdf" class="btn-download" target="_blank">Annual Report 2023</a>
-        </div>
-      </div>
-      <div class="nav-item">
-        <a href="#">Brand e prodotti</a>
-        <div class="dropdown">
-          <a href="#">Brand</a>
-          <a href="#">Prodotti</a>
-        </div>
-      </div>
-      <div class="nav-item">
-        <a href="#">Persone</a>
-        <div class="dropdown">
-          <a href="#">Aree professionali</a>
-          <a href="#">Coltivare risorse</a>
-          <a href="#">Welfare aziendale</a>
-        </div>
-      </div>
-      <div class="nav-item">
-        <a href="#">Qualità</a>
-        <div class="dropdown">
-          <a href="#">Filiera integrata</a>
-          <a href="#">Sistema di Gestione</a>
-          <a href="#">Laboratori</a>
-          <a href="#">Certificazioni</a>
-        </div>
-      </div>
-      <div class="nav-item"><a href="#">Fondazione</a></div>
-      <!-- Voce evidenziata: classe nav-highlight via CSS -->
-      <div class="nav-item nav-highlight">
-        <a href="#sostenibilita">📥 Sostenibilità</a>
-      </div>
-    </nav>
-  </header>
-
-  <!-- HERO: JS anima .hero-content aggiungendo .visible -->
-  <section class="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-pattern"></div>
-    <div class="hero-content">
-      <p class="hero-eyebrow">Dal 1959 — Qualità italiana</p>
-      <h1>Produzione, trasformazione e distribuzione della tradizione gastronomica italiana</h1>
-      <p>Un gruppo che unisce passione per la qualità, rispetto per le persone e impegno concreto verso un futuro sostenibile.</p>
-      <a href="#sostenibilita" class="btn-primary">Scopri i Report di Sostenibilità</a>
+    <!-- BANNER DIDATTICO -->
+    <div class="didactic-banner">
+        ⚠️ <span>Sito dimostrativo a scopo didattico</span> — Studente del corso L-31 Alessio Patrizi
+        Matr.0312302211. Replica semplificata di Gruppo Veronesi per uso universitario. Non affiliato con Gruppo
+        Veronesi S.p.A.
     </div>
-  </section>
 
-  <!-- STATISTICHE: CSS Grid 4 colonne -->
-  <section class="stats">
-    <div class="stat">
-      <div class="stat-num">14.000+</div>
-      <div class="stat-label">Dipendenti</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">3,8 Mld</div>
-      <div class="stat-label">Fatturato (€)</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">30+</div>
-      <div class="stat-label">Stabilimenti</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">65+</div>
-      <div class="stat-label">Anni di storia</div>
-    </div>
-  </section>
 
-  <!-- PILLARS: CSS Grid 3x2, JS anima le .card con IntersectionObserver -->
-  <section>
-    <div class="section-title">
-      <h2>I nostri pilastri</h2>
-      <p>Qualità, innovazione e responsabilità sociale guidano ogni scelta del Gruppo Veronesi</p>
-      <div class="title-line"></div>
-    </div>
-    <div class="cards-grid">
-      <div class="card">
-        <div class="card-icon">🌾</div>
-        <h3>Filiera di qualità</h3>
-        <p>Dalla produzione di mangimi alla tavola del consumatore, ogni fase è controllata e certificata per garantire la massima qualità.</p>
-        <a href="#" class="card-link">Scopri di più →</a>
-      </div>
-      <div class="card">
-        <div class="card-icon">👥</div>
-        <h3>Le nostre persone</h3>
-        <p>Oltre 14.000 collaboratori sono il cuore del gruppo. Investiamo in formazione, welfare e crescita professionale.</p>
-        <a href="#" class="card-link">Lavora con noi →</a>
-      </div>
-      <div class="card">
-        <div class="card-icon">🏆</div>
-        <h3>Brand storici italiani</h3>
-        <p>AIA, Negroni e Veronesi: marchi iconici che incarnano la tradizione gastronomica italiana amata in tutto il mondo.</p>
-        <a href="#" class="card-link">I nostri brand →</a>
-      </div>
-      <div class="card">
-        <div class="card-icon">🔬</div>
-        <h3>Ricerca e innovazione</h3>
-        <p>Laboratori all'avanguardia e investimento continuo in R&D per prodotti sempre più sicuri, sani e innovativi.</p>
-        <a href="#" class="card-link">I laboratori →</a>
-      </div>
-      <div class="card">
-        <div class="card-icon">🤝</div>
-        <h3>Fondazione Veronesi</h3>
-        <p>Impegno concreto verso la comunità attraverso iniziative sociali, culturali e di supporto al territorio.</p>
-        <a href="#" class="card-link">La fondazione →</a>
-      </div>
-      <div class="card">
-        <div class="card-icon">🌍</div>
-        <h3>Sostenibilità ESG</h3>
-        <p>Un impegno strutturato su ambiente, governance e impatto sociale, documentato nei nostri report annuali.</p>
-        <a href="#sostenibilita" class="card-link">Scarica i report →</a>
-      </div>
-    </div>
-  </section>
+    <!-- HEADER -->
+    <header id="main-header">
+<a href="#" class="logo">
+  <img src="logo_veronesi.webp" alt="Gruppo Veronesi" class="logo-img logo-img--footer" />
 
-  <!-- BRAND -->
-  <section class="brands">
-    <h2>I nostri brand</h2>
-    <p class="brands-sub">Tre marchi, un'unica missione: la qualità italiana a tavola</p>
-    <div class="brands-logos">
-      <div class="brand-item"><span>AIA</span></div>
-      <div class="brand-item"><span>Negroni</span></div>
-      <div class="brand-item"><span>Veronesi</span></div>
-    </div>
-  </section>
 
-  <!-- =====================================================
-       SOSTENIBILITÀ & DOWNLOAD
-       id="sostenibilita" → target del smooth scroll JS
-       data-type e data-year → usati dal filtro in script.js
-       JS inserisce la barra filtri sopra #reports-container
-       Toast notifica al click su .btn-download
-       ===================================================== -->
-  <section class="sustainability" id="sostenibilita">
-    <div class="sus-inner">
-
-      <div class="sus-left">
-        <h2>Il nostro impegno per la <span class="accent">sostenibilità</span></h2>
-        <p>Il Gruppo Veronesi integra la sostenibilità in ogni dimensione del business: dalla gestione della filiera al benessere animale, dalla riduzione dell'impatto ambientale alla creazione di valore per la comunità.</p>
-        <p>I report sono disponibili in questo repository GitHub e possono essere scaricati liberamente per approfondire la rendicontazione non finanziaria (DNF) e i framework ESG adottati.</p>
-        <div class="goals">
-          <span class="goal-badge">SDG 2 – Fame Zero</span>
-          <span class="goal-badge">SDG 8 – Lavoro Dignitoso</span>
-          <span class="goal-badge">SDG 12 – Consumo Responsabile</span>
-          <span class="goal-badge">SDG 13 – Azione per il Clima</span>
-          <span class="goal-badge">GRI Standards</span>
-          <span class="goal-badge">TCFD</span>
-        </div>
-      </div>
-
-      <div class="sus-right">
-        <!-- JS inserisce qui la barra filtri automaticamente -->
-        <div class="reports-list" id="reports-container">
-
-          <div class="report-card" data-type="dnf" data-year="2023">
-            <div class="report-info">
-              <div class="report-year">2023 — Bilancio di Sostenibilità</div>
-              <div class="report-name"><a href="https://www.gruppoveronesi.it/wp-content/uploads/2024/07/GruppoVeronesi_AR_2023_ITA-1.pdf">Report &amp; Sostenibilità 2023</a></div>
-              <div class="report-desc">GRI Standards · Benessere animale · Emissioni CO₂ · Comunità</div>
+        <!-- Navigazione desktop -->
+        <nav id="desktop-nav">
+            <div class="nav-item">
+                <a href="#">Gruppo</a>
+                <div class="dropdown">
+                    <a href="https://www.gruppoveronesi.it/profilo-aziendale">Profilo aziendale</a>
+                    <a href="https://www.gruppoveronesi.it/story">Storia</a>
+                    <a href="https://www.gruppoveronesi.it/i-nostri-valori-e-i-principi">Valori</a>
+                    <a href="https://www.gruppoveronesi.it/aree-di-attivita">Aree di attività</a>
+                    <a
+                        href="https://www.gruppoveronesi.it/wp-content/uploads/2024/07/GruppoVeronesi_AR_2023_ITA-1.pdf"
+                        class="btn-download"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >Annual Report 2023</a>
+                </div>
             </div>
-            <span class="report-size">4.2 MB</span>
-            <a class="btn-download"
-               href="https://www.gruppoveronesi.it/wp-content/uploads/2024/07/GruppoVeronesi_AR_2023_ITA-1.pdf"
-               target="_blank" rel="noopener noreferrer" download>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <path d="M12 3v13M7 11l5 5 5-5M3 20h18"/>
-              </svg>
-              PDF
-            </a>
-          </div>
-
-          <div class="report-card" data-type="dnf" data-year="2024">
-            <div class="report-info">
-              <div class="report-year">2024 — Bilancio di Sostenibilità</div>
-              <div class="report-name"><a href="https://www.gruppoveronesi.it/wp-content/uploads/2026/02/GruppoVeronesi_AR_2024.pdf">Report &amp; Sostenibilità 2024</a></div>
-              <div class="report-desc">Economia circolare · Acqua · Biodiversità · Social</div>
+            <div class="nav-item">
+                <a href="#">Brand e prodotti</a>
+                <div class="dropdown">
+                    <a href="https://www.gruppoveronesi.it/brand">Brand</a>
+                    <a href="https://www.gruppoveronesi.it/prodotti">Prodotti</a>
+                </div>
             </div>
-            <span class="report-size">3.8 MB</span>
-            <a class="btn-download"
-               href="https://www.gruppoveronesi.it/wp-content/uploads/2026/02/GruppoVeronesi_AR_2024.pdf"
-               target="_blank" rel="noopener noreferrer" download>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <path d="M12 3v13M7 11l5 5 5-5M3 20h18"/>
-              </svg>
-              PDF
-            </a>
-          </div>
+            <div class="nav-item">
+                <a href="https://www.gruppoveronesi.it/coltivare-risorse">Persone</a>
+                <div class="dropdown">
+                    <a href="https://www.gruppoveronesi.it/aree-professionali">Aree professionali</a>
+                    <a href="https://www.gruppoveronesi.it/coltivare-risorse">Coltivare risorse</a>
+                    <a href="https://www.gruppoveronesi.it/welfare-aziendale">Welfare aziendale</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a href="#">Qualità</a>
+                <div class="dropdown">
+                    <a href="https://www.gruppoveronesi.it/filiera-garantita">Filiera integrata</a>
+                    <a href="https://www.gruppoveronesi.it/sistema-di-gestione">Sistema di Gestione</a>
+                    <a href="https://www.gruppoveronesi.it/laboratori">Laboratori</a>
+                    <a href="https://www.gruppoveronesi.it/certificazioni">Certificazioni</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a href="https://www.gruppoveronesi.it/fondazione">Fondazione</a>
+            </div>
+            <div class="nav-item nav-highlight">
+                <a href="#sostenibilita">📥 Sostenibilità</a>
+            </div>
+        </nav>
 
+        <!-- Hamburger -->
+        <button class="hamburger" id="hamburger-btn" aria-label="Menu" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </header>
+
+    <!-- Overlay mobile -->
+    <div class="mobile-nav-overlay" id="mobile-overlay"></div>
+
+    <!-- Pannello mobile -->
+    <div class="mobile-nav-panel" id="mobile-panel">
+        <button class="mobile-nav-close" id="mobile-close" aria-label="Chiudi menu">&times;</button>
+        <div class="nav-item">
+            <a href="#">Gruppo</a>
+            <div class="dropdown">
+                <a href="https://www.gruppoveronesi.it/profilo-aziendale">Profilo aziendale</a>
+                <a href="https://www.gruppoveronesi.it/una-storia-di-famiglia">Storia</a>
+                <a href="https://www.gruppoveronesi.it/i-nostri-valori-e-i-principi">Valori</a>
+                <a href="https://www.gruppoveronesi.it/aree-di-attivita">Aree di attività</a>
+                <a href="https://www.gruppoveronesi.it/wp-content/uploads/2024/07/GruppoVeronesi_AR_2023_ITA-1.pdf"
+                    target="_blank" rel="noopener noreferrer">Annual Report 2023</a>
+            </div>
         </div>
-
-        <div class="github-note">
-          <strong>📦 Fonte: Repository GitHub</strong><br>
-          I file PDF sono ospitati su GitHub per garantire versionamento e accesso libero.<br>
-          Repository: <a href="https://github.com/Alekso97/veronesi-sustainability" target="_blank" rel="noopener noreferrer">github.com/Alekso97/veronesi-sustainability</a><br>
+        <div class="nav-item">
+            <a href="#">Brand e prodotti</a>
+            <div class="dropdown">
+                <a href="https://www.gruppoveronesi.it/brand">Brand</a>
+                <a href="https://www.gruppoveronesi.it/prodotti">Prodotti</a>
+            </div>
         </div>
-      </div>
+        <div class="nav-item">
+            <a href="#">Persone</a>
+            <div class="dropdown">
+                <a href="https://www.gruppoveronesi.it/aree-professionali">Aree professionali</a>
+                <a href="https://www.gruppoveronesi.it/coltivare-risorse">Coltivare risorse</a>
+                <a href="https://www.gruppoveronesi.it/welfare-aziendale">Welfare aziendale</a>
+            </div>
+        </div>
+        <div class="nav-item">
+            <a href="#">Qualità</a>
+            <div class="dropdown">
+                <a href="https://www.gruppoveronesi.it/filiera-garantita">Filiera integrata</a>
+                <a href="https://www.gruppoveronesi.it/sistema-di-gestione">Sistema di Gestione</a>
+                <a href="https://www.gruppoveronesi.it/laboratori">Laboratori</a>
+                <a href="https://www.gruppoveronesi.it/certificazioni">Certificazioni</a>
+            </div>
+        </div>
+        <div class="nav-item">
+            <a href="https://www.gruppoveronesi.it/fondazione">Fondazione</a>
+        </div>
+        <div class="nav-item nav-highlight">
+            <a href="#sostenibilita">📥 Sostenibilità</a>
+        </div>
     </div>
-  </section>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-brand">
-        <a href="#" class="logo">Gruppo <span style="color:#fff">Veronesi</span></a>
-        <p>Sede legale: Via Olanda 2, 37135 Verona (VR)<br>P.IVA 03488270232<br>REA VR-329185</p>
-        <p style="margin-top:1rem;font-size:0.75rem;color:rgba(255,255,255,0.3);">
-          Sito dimostrativo a scopo didattico — non affiliato con Gruppo Veronesi S.p.A.
-        </p>
-      </div>
-      <div class="footer-col">
-        <h4>Gruppo</h4>
-        <a href="#">Profilo aziendale</a>
-        <a href="#">Storia</a>
-        <a href="#">Valori</a>
-        <a href="#">Annual Report</a>
-      </div>
-      <div class="footer-col">
-        <h4>Sostenibilità</h4>
-        <a href="#sostenibilita">Report DNF</a>
-        <a href="#sostenibilita">Annual Report</a>
-        <a href="#">Certificazioni</a>
-        <a href="#">Politica Ambientale</a>
-      </div>
-      <div class="footer-col">
-        <h4>Azienda</h4>
-        <a href="#">Lavora con noi</a>
-        <a href="#">Contatti</a>
-        <a href="#">Privacy Policy</a>
-        <a href="#">Cookie Policy</a>
-      </div>
+    <!-- HERO -->
+    <section class="hero" id="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-pattern"></div>
+        <div class="hero-content" id="hero-content">
+            <p class="hero-eyebrow">Dal 1959 — Qualità italiana</p>
+            <h1>Produzione, trasformazione e distribuzione della tradizione gastronomica italiana</h1>
+            <p>
+                Un gruppo che unisce passione per la qualità, rispetto per le persone e impegno concreto
+                verso un futuro sostenibile.
+            </p>
+            <a href="#sostenibilita" class="btn-primary">Scopri i Report di Sostenibilità</a>
+        </div>
+    </section>
+
+   
+<!-- Sezione Le Origini -->
+<div class="origini-container">
+    <h1><strong><em class="origini-title">Le Origini:</em></strong></h1>
+    <div class="origini-content">
+        <div class="origini-image">
+            <img src="apollinare-veronesi.webp" alt="Apollinare Veronesi fondatore">
+        </div>
+        <div class="origini-text">
+            <p>
+                La storia del Gruppo nasce con Apollinare Veronesi, il suo fondatore. Fin da giovane lavora nell’azienda di famiglia, occupandosi del mulino ad acqua del padre e proseguendo una tradizione familiare lunga cinque secoli. La sua spiccata curiosità nei confronti dell’innovazione tecnologica e l’esperienza maturata sul campo rappresentano i due punti fermi sui quali costruirà il percorso imprenditoriale di successo degli anni a venire.
+            </p>
+            <p><strong>Un giovane Apollinare Veronesi – 1958</strong></p>
+            <p>
+                Il 1958 è un anno di svolta. Grazie alla visione e alla geniale intuizione del suo fondatore, nasce il Gruppo Veronesi. Nell’Italia del dopoguerra che tornava ad avere la carne in tavola, Apollinare Veronesi costruisce il primo impianto mangimistico a Quinto di Valpantena (VR). Dal 1958, grazie alla sua propensione per l’innovazione e la ricerca continua, l’azienda cresce e si trasforma.
+            </p>
+            <p><strong>Primo impianto mangimistico Veronesi nel 1958</strong></p>
+            <p>
+                Il Gruppo si apre al settore dell’allevamento avicolo e della produzione e lavorazione di carni di pollame: viene costituita l’Agricola Italiana Alimentare S.p.A che diventerà famosa in Italia e nel mondo come AIA.
+            </p>
+            <p><strong>AIA Food, Agricola Italiana Alimentare – Allevamento avicolo AIA</strong></p>
+            <p>
+                Nel 1985 arrivano le carni suine: il gruppo acquisisce macelli, salumifici e l’azienda Montorsi. In ambito avicolo la crescita continua con l’ingresso di Palladio, Cok, Pavo e Ovomattino.
+            </p>
+            <p><strong>Accurati controlli su carni suine, introdotte nel Gruppo Veronesi nel 1985</strong></p>
+            <p>
+                Nel 2002 Il Gruppo Veronesi acquisisce l’azienda Negroni, storico marchio della salumeria d’eccellenza italiana, diventando in pochi anni uno dei player principali del mercato degli affettati.
+            </p>
+        </div>
     </div>
-    <div class="footer-bottom">
-      <span>© 2024 Gruppo Veronesi S.p.A. — Replica didattica</span>
-      <span>Realizzato con HTML · CSS · JS</span>
-    </div>
-  </footer>
+</div><!-- STATISTICHE -->    
+<h1 class="oggi">AD OGGI IL GRUPPO VERONESI CONTA:</h1>
+    <section class="stats" id="stats">
+        <div class="stat">
+            <div class="stat-num" data-target="14000">0</div>
+            <div class="stat-label">Dipendenti</div>
+        </div>
+        <div class="stat">
+            <div class="stat-num" data-target="3.8" data-suffix=" Mld">0</div>
+            <div class="stat-label">Fatturato (€)</div>
+        </div>
+        <div class="stat">
+            <div class="stat-num" data-target="30">0</div>
+            <div class="stat-label">Stabilimenti</div>
+        </div>
+        <div class="stat">
+            <div class="stat-num" data-target="65">0</div>
+            <div class="stat-label">Anni di storia</div>
+        </div>
+    </section>
 
-  <script src="script.js"></script>
+    <!-- PILASTRI -->
+    <section>
+        <div class="section-title">
+            <h2>I nostri pilastri</h2>
+            <p>Qualità, innovazione e responsabilità sociale guidano ogni scelta del Gruppo Veronesi</p>
+            <div class="title-line"></div>
+        </div>
+        <div class="cards-grid" id="cards-grid">
+            <div class="card">
+                <div class="card-icon">🌾</div>
+                <h3>Filiera di qualità</h3>
+                <p>
+                    Dalla produzione di mangimi alla tavola del consumatore, ogni fase è controllata e
+                    certificata per garantire la massima qualità.
+                </p>
+                <a href="#" class="card-link">Scopri di più →</a>
+            </div>
+            <div class="card">
+                <div class="card-icon">👥</div>
+                <h3>Le nostre persone</h3>
+                <p>
+                    Oltre 14.000 collaboratori sono il cuore del gruppo. Investiamo in formazione,
+                    welfare e crescita professionale.
+                </p>
+                <a href="#" class="card-link">Lavora con noi →</a>
+            </div>
+            <div class="card">
+                <div class="card-icon">🏆</div>
+                <h3>Brand storici italiani</h3>
+                <p>
+                    AIA, Negroni e Veronesi: marchi iconici che incarnano la tradizione gastronomica
+                    italiana amata in tutto il mondo.
+                </p>
+                <a href="https://www.gruppoveronesi.it/brand" class="card-link">I nostri brand →</a>
+            </div>
+            <div class="card">
+                <div class="card-icon">🔬</div>
+                <h3>Ricerca e innovazione</h3>
+                <p>
+                    Laboratori all'avanguardia e investimento continuo in R&D per prodotti sempre più
+                    sicuri, sani e innovativi.
+                </p>
+                <a href="https://www.gruppoveronesi.it/laboratori" class="card-link">I laboratori →</a>
+            </div>
+            <div class="card">
+                <div class="card-icon">🤝</div>
+                <h3>Fondazione Veronesi</h3>
+                <p>
+                    Impegno concreto verso la comunità attraverso iniziative sociali, culturali e di
+                    supporto al territorio.
+                </p>
+                <a href="https://www.gruppoveronesi.it/fondazione" class="card-link">La fondazione →</a>
+            </div>
+            <div class="card">
+                <div class="card-icon">🌍</div>
+                <h3>Sostenibilità ESG</h3>
+                <p>
+                    Un impegno strutturato su ambiente, governance e impatto sociale, documentato nei
+                    nostri report annuali.
+                </p>
+                <a href="#sostenibilita" class="card-link">Scarica i report →</a>
+            </div>
+        </div>
+    </section>
 
+    <!-- BRAND -->
+    <section class="brands">
+        <h2>I nostri brand</h2>
+        <p class="brands-sub">Tre marchi, un'unica missione: la qualità italiana a tavola</p>
+        <div class="brands-logos">
+            <div class="brand-item">
+    <img src="logo_Aia.png"  class="brand-logo-inline">
+            </div>
+            <div class="brand-item">    <img src="logo_negroni.png" alt="Negroni brand logo for Italian charcuterie" class="brand-logo-inline">
+</div>
+            <div class="brand-item">    <img src="logo_veronesi.webp" alt="Gruppo Veronesi logo with red geometric icon and company name" class="brand-logo-inline">
+        </div>
+    </section>
+
+    <!-- SOSTENIBILITÀ -->
+    <section class="sustainability" id="sostenibilita">
+        <div class="sus-inner">
+            <div class="sus-left">
+                <h2>Il nostro impegno per la <span class="accent">sostenibilità</span></h2>
+                <p>
+                    Il Gruppo Veronesi integra la sostenibilità in ogni dimensione del business: dalla
+                    gestione della filiera al benessere animale, dalla riduzione dell'impatto ambientale
+                    alla creazione di valore per la comunità.
+                </p>
+                <p>
+                    I report sono disponibili in questo repository GitHub e possono essere scaricati
+                    liberamente per approfondire la rendicontazione non finanziaria (DNF) e i framework
+                    ESG adottati.
+                </p>
+                <div class="goals">
+                    <span class="goal-badge">SDG 2 – Fame Zero</span>
+                    <span class="goal-badge">SDG 8 – Lavoro Dignitoso</span>
+                    <span class="goal-badge">SDG 12 – Consumo Responsabile</span>
+                    <span class="goal-badge">SDG 13 – Azione per il Clima</span>
+                    <span class="goal-badge">GRI Standards</span>
+                    <span class="goal-badge">TCFD</span>
+                </div>
+            </div>
+
+            <div class="sus-right">
+                <!-- Filtri -->
+                <div class="report-filters" id="report-filters">
+                    <button class="filter-btn active" data-filter="all">Tutti</button>
+                    <button class="filter-btn" data-filter="dnf">DNF / ESG</button>
+                    <button class="filter-btn" data-filter="annual">Annual Report</button>
+                </div>
+
+                <!-- Lista report -->
+                <div class="reports-list" id="reports-container">
+                    <div class="report-card" data-type="dnf" data-year="2023">
+                        <div class="report-info">
+                            <div class="report-year">2023 — Bilancio di Sostenibilità</div>
+                            <div class="report-name">
+                                <a href="https://www.gruppoveronesi.it/wp-content/uploads/2024/07/GruppoVeronesi_AR_2023_ITA-1.pdf"
+                                    target="_blank" rel="noopener noreferrer">
+                                    Report Sostenibilità 2023
+                                </a>
+                            </div>
+                            <div class="report-desc">GRI Standards · Benessere animale · Emissioni CO₂ · Comunità</div>
+                        </div>
+                        <span class="report-size">4.2 MB</span>
+                        <a class="btn-download"
+                            href="https://www.gruppoveronesi.it/wp-content/uploads/2024/07/GruppoVeronesi_AR_2023_ITA-1.pdf"
+                            target="_blank" rel="noopener noreferrer" download>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M12 3v13M7 11l5 5 5-5M3 20h18" />
+                            </svg>
+                            PDF
+                        </a>
+                    </div>
+
+                    <div class="report-card" data-type="dnf" data-year="2024">
+                        <div class="report-info">
+                            <div class="report-year">2024 — Bilancio di Sostenibilità</div>
+                            <div class="report-name">
+                                <a href="https://www.gruppoveronesi.it/wp-content/uploads/2026/02/GruppoVeronesi_AR_2024.pdf"
+                                    target="_blank" rel="noopener noreferrer">
+                                    Report Sostenibilità 2024
+                                </a>
+                            </div>
+                            <div class="report-desc">Economia circolare · Acqua · Biodiversità · Social</div>
+                        </div>
+                        <span class="report-size">3.8 MB</span>
+                        <a class="btn-download"
+                            href="https://www.gruppoveronesi.it/wp-content/uploads/2026/02/GruppoVeronesi_AR_2024.pdf"
+                            target="_blank" rel="noopener noreferrer" download>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M12 3v13M7 11l5 5 5-5M3 20h18" />
+                            </svg>
+                            PDF
+                        </a>
+                    </div>
+
+                    <div class="report-card" data-type="annual" data-year="2022">
+                        <div class="report-info">
+                            <div class="report-year">2022 — Annual Report</div>
+                            <div class="report-name">
+                                <a href="https://github.com/Alekso97/veronesi-sustainability/blob/85a6e8e0ac9fe49692dc8332ede22bd323ced535/08_GruppoVeronesi_AnnualReport.pdf"
+                                    target="_blank" rel="noopener noreferrer">
+                                    Annual Report 2022
+                                </a>
+                            </div>
+                            <div class="report-desc">Bilancio annuale · Dati finanziari · Governance</div>
+                        </div>
+                        <span class="report-size">5.1 MB</span>
+                        <a class="btn-download"
+                            href="https://github.com/Alekso97/veronesi-sustainability/blob/85a6e8e0ac9fe49692dc8332ede22bd323ced535/08_GruppoVeronesi_AnnualReport.pdf"
+                            target="_blank" rel="noopener noreferrer" download>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M12 3v13M7 11l5 5 5-5M3 20h18" />
+                            </svg>
+                            PDF
+                        </a>
+                    </div>
+                </div>
+
+                <div class="github-note">
+                    <strong>📦 Fonte: Repository GitHub</strong><br />
+                    I file PDF sono ospitati su GitHub per garantire versionamento e accesso libero.<br />
+                    Repository:
+                    <a href="https://github.com/Alekso97/veronesi-sustainability"
+                        target="_blank" rel="noopener noreferrer">
+                        github.com/Alekso97/veronesi-sustainability
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <a href="#" class="logo">Gruppo <span style="color:#fff">Veronesi</span></a>
+                <p>
+                    Sede legale: Via Olanda 2, 37135 Verona (VR)<br />
+                    P.IVA 03488270232<br />
+                    REA VR-329185
+                </p>
+                <p style="margin-top: 0.8rem; font-size: 0.72rem; color: rgba(255,255,255,0.3)">
+                    Sito dimostrativo a scopo didattico — non affiliato con Gruppo Veronesi S.p.A.
+                </p>
+            </div>
+            <div class="footer-col">
+                <h4>Gruppo</h4>
+                <a href="https://www.gruppoveronesi.it/profilo-aziendale">Profilo aziendale</a>
+                <a href="https://www.gruppoveronesi.it/storia">Storia</a>
+                <a href="https://www.gruppoveronesi.it/i-nostri-valori-e-i-principi">Valori</a>
+                <a href="https://www.gruppoveronesi.it/annual-report">Annual Report</a>
+            </div>
+            <div class="footer-col">
+                <h4>Sostenibilità</h4>
+                <a href="#sostenibilita">Report DNF</a>
+                <a href="#sostenibilita">Annual Report</a>
+                <a href="#">Certificazioni</a>
+                <a href="#">Politica Ambientale</a>
+            </div>
+            <div class="footer-col">
+                <h4>Azienda</h4>
+                <a href="#">Lavora con noi</a>
+                <a href="#">Contatti</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Cookie Policy</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2024 Gruppo Veronesi S.p.A. — Replica didattica</span>
+            <span>Realizzato con HTML · CSS · JS</span>
+        </div>
+    </footer>
+
+    <!-- Toast notification -->
+    <div class="toast" id="toast"></div>
+
+    <!-- JavaScript esterno -->
+    <script src="script.js"></script>
 </body>
 </html>
